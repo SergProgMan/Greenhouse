@@ -28,8 +28,7 @@ extern uint8_t MediumNumbers[];
 int minT = 18; 
 //int maxT = 29; 
 
-int butPin = 5;
-int ledPin = 13;
+#define Relay  6 
 
 unsigned long currentMillis;
 
@@ -52,10 +51,9 @@ void setup()
   sensors.setResolution(insideThermometer, TEMPERATURE_PRECISION);
   sensors.setResolution(outsideThermometer, TEMPERATURE_PRECISION);
 
-  dht.begin();
+  pinMode(Relay, OUTPUT);
 
-  pinMode (ledPin, OUTPUT);
-  pinMode (butPin, INPUT);
+  dht.begin();
 
   timeOfWork = EEPROMReadlong(); //load from EEPROM
 
@@ -121,7 +119,7 @@ void Display()
   if (t1 < minT && t2 < minT) //Heating...
   {
     myOLED.print("Yfuhtd DRK", 4, 50); // Нагрев ВКЛ
-    
+    digitalWrite(Relay, HIGH);
     if (currentMillis - prevMillis1 >= intervalHour || currentMillis < prevMillis1)
   {
     prevMillis1 = currentMillis;
