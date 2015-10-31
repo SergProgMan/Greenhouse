@@ -25,7 +25,7 @@ extern uint8_t SmallFont[];
 extern uint8_t MediumNumbers[];
 
 
-int minT = 18; 
+int minT = 22; 
 //int maxT = 29; 
 
 #define Relay  6 
@@ -57,6 +57,7 @@ void setup()
 
   timeOfWork = EEPROMReadlong(); //load from EEPROM
 
+  Display();
 }
 
 
